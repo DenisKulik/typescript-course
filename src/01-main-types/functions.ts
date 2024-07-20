@@ -1,6 +1,6 @@
 function getFullName(firstName: string, lastName: string): string {
-    return `${firstName} ${lastName}`;
+    return `${firstName} ${lastName}`
 }
 
-const fullName = getFullName("John", "Doe");
+const fullName = getFullName("John", "Doe")
 console.log(fullName); // John Doe
