@@ -4,5 +4,8 @@ const userItem2 = {
     name: 'John',
     age: 25,
     skills: ['JavaScript', 'TypeScript'],
-    createAt: new Date()
+    createAt: new Date(),
+    log: (id) => {
+        return '';
+    }
 };

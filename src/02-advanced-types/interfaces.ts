@@ -20,7 +20,7 @@ const userItem2: UserWitchRoleInterface = {
     age: 25,
     skills: ['JavaScript', 'TypeScript'],
     createAt: new Date(),
-    log: (id) {
+    log: (id) => {
         return ''
     }
 }
