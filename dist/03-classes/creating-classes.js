@@ -15,5 +15,5 @@ class AdminClass extends UserClass {
         this.role = role;
     }
 }
-const newAdmin = new AdminClass('Admin');
+const newAdmin = new AdminClass(1);
 console.log(newAdmin);
