@@ -16,7 +16,7 @@ class Payment {
         return new Date().getTime() - this.createdAt.getTime();
     }
     unholdPayment() {
-        if (this.status === PaymentStatus.Processed) {
+        if (this.status == PaymentStatus.Processed) {
             throw new Error('Payment is already processed');
         }
         this.status = PaymentStatus.Reversed;
