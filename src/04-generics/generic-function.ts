@@ -11,3 +11,16 @@ function getSplittedHalf<T>(array: Array<T>): Array<T> {
 }
 
 console.log(getSplittedHalf([1, 2, 3, 4, 5, 6]))
+
+// type function
+const split: <T>(data: Array<T>) => Array<T> = getSplittedHalf
+
+interface ILogLine<T> {
+    timeStamp: Date
+    data: T
+}
+
+const logLine: ILogLine<string> = {
+    timeStamp: new Date(),
+    data: 'login'
+}
