@@ -9,3 +9,8 @@ function getSplittedHalf(array) {
     return array.slice(0, middle);
 }
 console.log(getSplittedHalf([1, 2, 3, 4, 5, 6]));
+const split = getSplittedHalf;
+const logLine = {
+    timeStamp: new Date(),
+    data: 'login'
+};
