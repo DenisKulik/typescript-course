@@ -7,17 +7,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 let UserServiceClass = class UserServiceClass {
     constructor() {
-        this.users = 1000;
+        this.users = 0;
     }
     getUsersInDB() {
         return this.users;
     }
 };
 UserServiceClass = __decorate([
-    nullUserAdvanced
+    setUsersAdvanced(1000)
 ], UserServiceClass);
 function nullUser(target) {
     target.prototype.users = 0;
+}
+function setUsers(users) {
+    return function (target) {
+        target.prototype.users = users;
+    };
 }
 function nullUserAdvanced(constructor) {
     return class extends constructor {
@@ -25,6 +30,16 @@ function nullUserAdvanced(constructor) {
             super(...arguments);
             this.users = 0;
         }
+    };
+}
+function setUsersAdvanced(users) {
+    return function (constructor) {
+        return class extends constructor {
+            constructor() {
+                super(...arguments);
+                this.users = users;
+            }
+        };
     };
 }
 console.log(new UserServiceClass().getUsersInDB());
