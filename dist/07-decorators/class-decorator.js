@@ -13,6 +13,12 @@ let UserServiceClass = class UserServiceClass {
         return this.users;
     }
 };
+__decorate([
+    Max(1000)
+], UserServiceClass.prototype, "users", void 0);
+__decorate([
+    Log()
+], UserServiceClass.prototype, "getUsersInDB", null);
 UserServiceClass = __decorate([
     setUsersAdvanced(1000)
 ], UserServiceClass);
@@ -42,4 +48,30 @@ function setUsersAdvanced(users) {
         };
     };
 }
-console.log(new UserServiceClass().getUsersInDB());
+function Log() {
+    return (target, propertyKey, descriptor) => {
+        descriptor.value = () => {
+            console.log('log');
+        };
+    };
+}
+function Max(maxValue) {
+    return (target, propertyKey) => {
+        let value;
+        const setter = function (newValue) {
+            if (newValue > maxValue) {
+                console.error('Value cannot be greater than ' + maxValue);
+            }
+        };
+        const getter = function () {
+            return value;
+        };
+        Object.defineProperty(target, propertyKey, {
+            get: getter,
+            set: setter
+        });
+    };
+}
+const newUser1 = new UserServiceClass();
+newUser1.users = 10000;
+console.log(newUser1.users);

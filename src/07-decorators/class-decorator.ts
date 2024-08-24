@@ -7,8 +7,10 @@ interface IUserService {
 
 @setUsersAdvanced(1000)
 class UserServiceClass implements IUserService {
+    @Max(1000)
     users: number = 0
 
+    @Log()
     getUsersInDB(): number {
         return this.users
     }
@@ -38,5 +40,43 @@ function setUsersAdvanced(users: number) {
     }
 }
 
-console.log(new UserServiceClass().getUsersInDB())
+function Log() {
+    return (
+        target: Object,
+        propertyKey: string | symbol,
+        descriptor: TypedPropertyDescriptor<(...args: any[]) => any>
+    ): TypedPropertyDescriptor<(...args: any[]) => any> | void => {
+        descriptor.value = () => {
+            console.log('log')
+        }
+    }
+}
+
+function Max(maxValue: number) {
+    return (
+        target: Object,
+        propertyKey: string | symbol,
+    ): void => {
+        let value: number
+
+        const setter = function (newValue: number) {
+            if (newValue > maxValue) {
+                console.error('Value cannot be greater than ' + maxValue)
+            }
+        }
+
+        const getter = function () {
+            return value
+        }
+
+        Object.defineProperty(target, propertyKey, {
+            get: getter,
+            set: setter
+        })
+    }
+}
+
+const newUser1 = new UserServiceClass()
+newUser1.users = 10000
+console.log(newUser1.users)
 
